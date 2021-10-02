@@ -1,5 +1,4 @@
-sudo: required
-dist: bionic
+dist: trusty
 language: java
 
 before_cache:
