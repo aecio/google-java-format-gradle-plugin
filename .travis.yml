@@ -27,11 +27,11 @@ install: true  # overwrite default install step (./gradlew assemble)
 jobs:
   include:
     - stage: unit tests
-      script: ./gradlew test
+      script: ./gradlew test --info --stacktrace
     - jdk: openjdk11
-      script: ./gradlew test
+      script: ./gradlew test --info --stacktrace
     - jdk: openjdk17
-      script: ./gradlew test
+      script: ./gradlew test --info --stacktrace
 #    - stage: integration tests
 #      env: INDEX=0
 #      script: scripts/travis-integ-tests.sh
