@@ -8,10 +8,11 @@ repositories {
 
 dependencies {
     implementation localGroovy()
-    testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
+    testImplementation('org.spockframework:spock-core:2.0-groovy-3.0') {
         // gradle always loads its own groovy version, which leads to conflicts
         exclude group: 'org.codehaus.groovy'
     }
+    testImplementation('org.junit.jupiter:junit-jupiter-api')
     testImplementation 'com.google.jimfs:jimfs:1.1'
 }
 

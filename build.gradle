@@ -38,9 +38,11 @@ dependencies {
     annotationProcessor 'com.google.auto.value:auto-value:1.6.5'
     compileOnlyApi      'com.google.auto.value:auto-value-annotations:1.6.5'
 
-    testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
+    testImplementation('org.spockframework:spock-core:2.0-groovy-3.0') {
         exclude group: 'org.codehaus.groovy'
     }
+    testImplementation('org.junit.jupiter:junit-jupiter-api')
+
     testImplementation 'com.google.jimfs:jimfs:1.1'
 
     integTestImplementation project(':test')
@@ -49,6 +51,11 @@ dependencies {
         exclude group: 'org.codehaus.groovy'
     }
     integTestImplementation sourceSets.main.output
+}
+
+// Spock 2 is based on JUnit Platform and needs to be enabled explicitly.
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 
 def integTestGradleVersion = System.getenv('GRADLE_VERSION') ?: '2.6'

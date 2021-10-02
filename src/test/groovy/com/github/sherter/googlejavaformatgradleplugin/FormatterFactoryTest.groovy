@@ -12,7 +12,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 import spock.util.environment.Jvm
 
-import static org.junit.Assume.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @IgnoreIf({ javaVersion < 1.8 })
 class FormatterFactoryTest extends Specification {

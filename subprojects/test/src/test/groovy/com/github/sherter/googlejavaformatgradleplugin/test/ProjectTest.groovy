@@ -1,17 +1,15 @@
 package com.github.sherter.googlejavaformatgradleplugin.test
 
-import org.junit.Rule
-import org.junit.rules.TemporaryFolder
+import org.junit.jupiter.api.io.TempDir
 import spock.lang.Specification
 
 class ProjectTest extends Specification {
 
-    @Rule TemporaryFolder temporaryFolder
+    @TempDir
     File rootDir
     Project project
 
     void setup() {
-        rootDir = temporaryFolder.root
         project = new Project(rootDir)
     }
 
