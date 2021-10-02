@@ -55,7 +55,21 @@ dependencies {
 
 // Spock 2 is based on JUnit Platform and needs to be enabled explicitly.
 tasks.withType(Test).configureEach {
+    // Enable jUnit 5 jupiter platform
     useJUnitPlatform()
+    // jUnit starts separate JVMs to run the tests. The options bellow are
+    // required in JDK 17 to explicitly allow access to internal JDK modules
+    // required by google-java-format.
+    // See:
+    // - https://github.com/google/google-java-format#jdk-16
+    // - https://github.com/google/google-java-format/issues/612
+    jvmArgs([
+        '--add-exports', 'jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED',
+        '--add-exports', 'jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED',
+        '--add-exports', 'jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED',
+        '--add-exports', 'jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
+        '--add-exports', 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED'
+    ])
 }
 
 def integTestGradleVersion = System.getenv('GRADLE_VERSION') ?: '2.6'

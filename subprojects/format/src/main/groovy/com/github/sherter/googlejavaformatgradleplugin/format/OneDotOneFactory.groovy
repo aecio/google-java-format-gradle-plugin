@@ -30,9 +30,9 @@ class OneDotOneFactory extends AbstractFormatterFactory {
                 tmp = removeUnusedImports.call(tmp)
                 return formatter.formatSource(tmp)
             } catch (e) {
-                throw new FormatterException()
+                throw new FormatterException(e)
             } catch (Error e) {
-                throw new FormatterException()
+                throw new FormatterException(e)
             }
         }
     }

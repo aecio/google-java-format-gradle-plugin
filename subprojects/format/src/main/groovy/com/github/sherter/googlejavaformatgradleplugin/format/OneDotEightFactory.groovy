@@ -4,6 +4,8 @@ import groovy.transform.CompileStatic
 import groovy.transform.PackageScope
 import groovy.transform.TypeCheckingMode
 
+import java.lang.reflect.Method
+
 @CompileStatic
 @PackageScope
 final class OneDotEightFactory extends OneDotOneFactory {
@@ -18,9 +20,9 @@ final class OneDotEightFactory extends OneDotOneFactory {
     @Override
     Closure<String> constructRemoveUnusedImportsClosure() {
         def clazz = classLoader.loadClass(removeUnusedImportsClassName)
-        def remover = clazz.newInstance()
+        Method remover = clazz.getMethod("removeUnusedImports", String.class)
         return { String source ->
-            remover.removeUnusedImports(source)
+            remover.invoke(null, source)
         }
     }
 }
