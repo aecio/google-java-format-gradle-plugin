@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: bionic
 language: java
 
 before_cache:
@@ -30,30 +30,32 @@ jobs:
       script: ./gradlew test
     - jdk: openjdk11
       script: ./gradlew test
-    - stage: integration tests
-      env: INDEX=0
-      script: scripts/travis-integ-tests.sh
-    - env: INDEX=1
-      script: scripts/travis-integ-tests.sh
-    - env: INDEX=2
-      script: scripts/travis-integ-tests.sh
-    - jdk: oraclejdk8
-      env: GRADLE_VERSIONS=2.6,3.0,4.0,5.0,6.0,6.5
-      script: scripts/travis-integ-tests.sh
-    - jdk: openjdk11
-      env: GRADLE_VERSIONS=4.9,5.0,6.0,6.5,6.9.1
-      script: scripts/travis-integ-tests.sh
-    - jdk: oraclejdk11
-      env: GRADLE_VERSIONS=4.9,5.0,6.0,6.5,6.9.1
-      script: scripts/travis-integ-tests.sh
-    - jdk: openjdk14
-      env: GRADLE_VERSIONS=6.3,6.5,6.9.1
-      script: scripts/travis-integ-tests.sh
-    - jdk: oraclejdk14
-      env: GRADLE_VERSIONS=6.3,6.5,6.9.1
-      script: scripts/travis-integ-tests.sh
-    - stage: deploy
-      if: (branch = master) AND (NOT (type = pull_request))
-      script: ./gradlew publish
-    - if: tag IS present
-      script: ./gradlew publishPlugins -Dgradle.publish.key=$PLUGIN_PORTAL_KEY -Dgradle.publish.secret=$PLUGIN_PORTAL_SECRET
+    - jdk: openjdk17
+      script: ./gradlew test
+#    - stage: integration tests
+#      env: INDEX=0
+#      script: scripts/travis-integ-tests.sh
+#    - env: INDEX=1
+#      script: scripts/travis-integ-tests.sh
+#    - env: INDEX=2
+#      script: scripts/travis-integ-tests.sh
+#    - jdk: oraclejdk8
+#      env: GRADLE_VERSIONS=2.6,3.0,4.0,5.0,6.0,6.5
+#      script: scripts/travis-integ-tests.sh
+#    - jdk: openjdk11
+#      env: GRADLE_VERSIONS=4.9,5.0,6.0,6.5,6.9.1
+#      script: scripts/travis-integ-tests.sh
+#    - jdk: oraclejdk11
+#      env: GRADLE_VERSIONS=4.9,5.0,6.0,6.5,6.9.1
+#      script: scripts/travis-integ-tests.sh
+#    - jdk: openjdk17
+#      env: GRADLE_VERSIONS=6.3,6.5,6.9.1,7.2
+#      script: scripts/travis-integ-tests.sh
+#    - jdk: oraclejdk17
+#      env: GRADLE_VERSIONS=6.3,6.5,6.9.1,7.2
+#      script: scripts/travis-integ-tests.sh
+#    - stage: deploy
+#      if: (branch = master) AND (NOT (type = pull_request))
+#      script: ./gradlew publish
+#    - if: tag IS present
+#      script: ./gradlew publishPlugins -Dgradle.publish.key=$PLUGIN_PORTAL_KEY -Dgradle.publish.secret=$PLUGIN_PORTAL_SECRET
