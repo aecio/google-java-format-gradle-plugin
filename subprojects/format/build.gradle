@@ -10,7 +10,7 @@ repositories {
 sourceCompatibility = 1.8
 
 dependencies {
-  implementation 'org.codehaus.groovy:groovy-all:3.0.8'  // v2.5.10 is the first version which runs on a Java 14 JVM.
+  implementation 'org.codehaus.groovy:groovy-all:3.0.9'  // v2.5.10 is the first version which runs on a Java 14 JVM.
                                                          // At runtime, we must still support v2.3.10 (bundled with
                                                          // Gradle v2.6) on Java < 14 JVMs.
   implementation 'com.google.guava:guava:30.0-jre'
